@@ -48,10 +48,12 @@ class AmazonPay extends Component {
 
   componentDidMount() {
     const {isSandbox, region} = this.props;
+    const {scriptLoaded} = this.state;
 
     window.onAmazonLoginReady = this.onAmazonLoginReady;
 
     if (window.amazon) {
+      if (!scriptLoaded) this.onAmazonLoginReady();
       return;
     }
 
