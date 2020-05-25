@@ -80,13 +80,14 @@ class AmazonAddressBook extends PureComponent {
   }
 
   componentDidMount() {
-    const {sellerId, agreementType} = this.props;
+    const {sellerId, agreementType, language} = this.props;
 
     new OffAmazonPayments.Widgets.AddressBook({
       onOrderReferenceCreate: this.onOrderReferenceCreate,
       onReady:                this.onReady,
       onAddressSelect:        this.onAddressSelect,
       onError:                this.onError,
+      language,
       sellerId,
       agreementType,
       design:                 {
@@ -113,6 +114,7 @@ AmazonAddressBook.getStyle = (style) => {
 AmazonAddressBook.propTypes = {
   sellerId:               PropTypes.string.isRequired,
   agreementType:          PropTypes.string.isRequired,
+  language:               PropTypes.string,
   style:                  PropTypes.object,
   onReady:                PropTypes.func,
   onError:                PropTypes.func,

@@ -30,6 +30,7 @@ export const bootstrapWithAmazon = (WrappedComponent) => {
 
   _BootstrappedAmazonComponent.propTypes = {
     clientId:           PropTypes.string.isRequired,
+    language:           PropTypes.string,
     onAmazonReady:      PropTypes.func,
     amazonScriptLoaded: PropTypes.bool,
     region:             PropTypes.oneOf(Object.values(REGION)),

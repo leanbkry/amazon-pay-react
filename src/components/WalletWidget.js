@@ -19,13 +19,14 @@ class WalletWidget extends PureComponent {
   }
 
   componentDidMount() {
-    const {sellerId} = this.props;
+    const {sellerId, language} = this.props;
 
     new OffAmazonPayments.Widgets.Wallet({
       sellerId,
       design:          { designMode: 'responsive' },
       onPaymentSelect: this.onPaymentSelect,
       onError:         this.onError,
+      language
     }).bind(AMAZON_WALLET_WIDGET_DIV_ID);
   }
 
@@ -72,6 +73,7 @@ WalletWidget.getStyle = (style) => {
 
 WalletWidget.propTypes = {
   sellerId:        PropTypes.string.isRequired,
+  language:        PropTypes.string,
   onPaymentSelect: PropTypes.func,
   onError:         PropTypes.func,
   style:           PropTypes.object,

@@ -20,7 +20,7 @@ class ConsentWidget extends PureComponent {
   }
 
   componentDidMount() {
-    const {sellerId, onReady, onConsent, onError, amazonBillingAgreementId, style} = this.props;
+    const {sellerId, onReady, language, onConsent, onError, amazonBillingAgreementId, style} = this.props;
 
     new OffAmazonPayments.Widgets.Consent({
       sellerId,
@@ -30,6 +30,7 @@ class ConsentWidget extends PureComponent {
         size: ConsentWidget.getStyle(style),
       },
       onReady,
+      language,
       onConsent,
       onError,
     }).bind(AMAZON_CONSENT_WIDGET_DIV_ID);
@@ -91,6 +92,7 @@ ConsentWidget.getStyle = (style) => {
 ConsentWidget.propTypes = {
   amazonBillingAgreementId: PropTypes.string.isRequired,
   sellerId:                 PropTypes.string.isRequired,
+  language:                 PropTypes.string,
   style:                    PropTypes.object,
   onReady:                  PropTypes.func,
   onConsent:                PropTypes.func,

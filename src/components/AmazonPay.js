@@ -220,11 +220,13 @@ class AmazonPay extends Component {
               agreementType={agreementType}
               onReady={this.handleAddressBookReady}
               onError={this.handleAddressBookError}
+              language={language}
               onAddressSelect={this.handleOnAddressSelect}
               onOrderReferenceCreate={this.onOrderReferenceCreate}
             />
             <WalletWidget sellerId={sellerId}
               onError={this.handleWalletError}
+              language={language}
               onPaymentSelect={this.handleOnPaymentSelect}
             />
 
@@ -232,6 +234,7 @@ class AmazonPay extends Component {
              <ConsentWidget sellerId={sellerId}
                amazonBillingAgreementId={billingAgreementId}
                onError={this.handleConsentError}
+               language={language}
                onReady={this.handleConsentOnReady}
                onConsent={this.handleOnConsent}
              />
