@@ -197,7 +197,7 @@ class AmazonPay extends Component {
 
   render() {
     const {
-      sellerId, agreementType, billingAgreementId, scope, btnType, btnColor, btnSize,
+      sellerId, agreementType, billingAgreementId, scope, language, btnType, btnColor, btnSize,
       useAmazonAddressBook,
     } = this.props;
     const {scriptLoaded, shouldDisplayWidgets, shouldDisplayConsent} = this.state;
@@ -209,6 +209,7 @@ class AmazonPay extends Component {
           scope={scope}
           onError={this.handleButtonError}
           type={btnType}
+          language={language}
           color={btnColor}
           size={btnSize}
           useAmazonAddressBook={useAmazonAddressBook}
@@ -253,6 +254,7 @@ AmazonPay.propTypes = {
   btnType:                  PropTypes.string.isRequired,
   btnColor:                 PropTypes.string.isRequired,
   btnSize:                  PropTypes.string.isRequired,
+  language:                 PropTypes.string,
   useAmazonAddressBook:     PropTypes.bool.isRequired,
   region:                   PropTypes.oneOf(Object.values(REGION)),
   isSandbox:                PropTypes.bool,

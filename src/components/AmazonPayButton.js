@@ -29,13 +29,14 @@ class AmazonPayButton extends PureComponent {
 
   componentDidMount() {
     const {
-      sellerId, scope, type, color, size, useAmazonAddressBook,
+      sellerId, scope, type, color, size, language, useAmazonAddressBook,
     } = this.props;
 
     OffAmazonPayments.Button(AMAZON_PAY_BUTTON_DIV_ID, sellerId, {
       type,
       color,
       size,
+      language,
       useAmazonAddressBook,
       authorization: () => {
         const loginOptions = {scope};
@@ -60,6 +61,7 @@ AmazonPayButton.propTypes = {
   useAmazonAddressBook: PropTypes.bool.isRequired,
   onAuthorization:      PropTypes.func.isRequired,
   onError:              PropTypes.func,
+  language:             PropTypes.string
 };
 
 export default AmazonPayButton;

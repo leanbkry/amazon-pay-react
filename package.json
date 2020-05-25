@@ -28,7 +28,7 @@
   "scripts": {
     "test": "./node_modules/.bin/jest",
     "dev": "webpack-dev-server --mode development --open --hot",
-    "build": "./node_modules/.bin/babel src -d dist --presets minify  --no-comments",
+    "build": "./node_modules/.bin/babel src -d dist --no-comments",
     "lint": "./node_modules/.bin/eslint src",
     "lint:fix": "./node_modules/.bin/eslint src --fix",
     "prepublishOnly": "yarn build"
