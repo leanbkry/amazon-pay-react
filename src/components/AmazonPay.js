@@ -197,14 +197,14 @@ class AmazonPay extends Component {
 
   render() {
     const {
-      sellerId, agreementType, billingAgreementId, scope, language, btnType, btnColor, btnSize,
+      sellerId, agreementType, widgetStyle, hideConsentWidget, widgetClassName, hidePayButton, billingAgreementId, scope, language, btnType, btnColor, btnSize,
       useAmazonAddressBook,
     } = this.props;
     const {scriptLoaded, shouldDisplayWidgets, shouldDisplayConsent} = this.state;
 
     return (
       <React.Fragment>
-        {scriptLoaded && <AmazonPayButton sellerId={sellerId}
+        {scriptLoaded && !hidePayButton && <AmazonPayButton sellerId={sellerId}
           onAuthorization={this.handleBtnOnAuthorization}
           scope={scope}
           onError={this.handleButtonError}
@@ -215,31 +215,37 @@ class AmazonPay extends Component {
           useAmazonAddressBook={useAmazonAddressBook}
         />}
         {shouldDisplayWidgets && (
-          <React.Fragment>
+          <div className="row">
             <AmazonAddressBook sellerId={sellerId}
               agreementType={agreementType}
               onReady={this.handleAddressBookReady}
               onError={this.handleAddressBookError}
               language={language}
+              widgetClassName={widgetClassName}
+              widgetStyle={widgetStyle}
               onAddressSelect={this.handleOnAddressSelect}
               onOrderReferenceCreate={this.onOrderReferenceCreate}
             />
             <WalletWidget sellerId={sellerId}
               onError={this.handleWalletError}
               language={language}
+              widgetClassName={widgetClassName}
+              widgetStyle={widgetStyle}
               onPaymentSelect={this.handleOnPaymentSelect}
             />
 
-            {shouldDisplayConsent && billingAgreementId &&
+            { !hideConsentWidget && shouldDisplayConsent && billingAgreementId &&
              <ConsentWidget sellerId={sellerId}
                amazonBillingAgreementId={billingAgreementId}
                onError={this.handleConsentError}
                language={language}
+               widgetClassName={widgetClassName}
+               widgetStyle={widgetStyle}
                onReady={this.handleConsentOnReady}
                onConsent={this.handleOnConsent}
              />
             }
-          </React.Fragment>
+          </div>
         )}
       </React.Fragment>
     );
@@ -258,7 +264,11 @@ AmazonPay.propTypes = {
   btnColor:                 PropTypes.string.isRequired,
   btnSize:                  PropTypes.string.isRequired,
   language:                 PropTypes.string,
+  widgetClassName:          PropTypes.string,
+  widgetStyle:              PropTypes.object,
   useAmazonAddressBook:     PropTypes.bool.isRequired,
+  hidePayButton:            PropTypes.bool,
+  hideConsentWidget:        PropTypes.bool,
   region:                   PropTypes.oneOf(Object.values(REGION)),
   isSandbox:                PropTypes.bool,
   onAddressSelect:          PropTypes.func,

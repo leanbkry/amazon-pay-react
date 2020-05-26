@@ -97,10 +97,10 @@ class AmazonAddressBook extends PureComponent {
   }
 
   render() {
-    const {style} = this.props;
+    const {style, widgetClassName, widgetStyle} = this.props;
 
     return (
-      <div id={AMAZON_ADDRESS_BOOK_DIV_ID} style={AmazonAddressBook.getStyle(style)}/>
+      <div className={widgetClassName} id={AMAZON_ADDRESS_BOOK_DIV_ID} style={widgetStyle ? widgetStyle : AmazonAddressBook.getStyle(style)}/>
     );
   }
 }
@@ -115,6 +115,8 @@ AmazonAddressBook.propTypes = {
   sellerId:               PropTypes.string.isRequired,
   agreementType:          PropTypes.string.isRequired,
   language:               PropTypes.string,
+  widgetClassName:        PropTypes.string,
+  widgetStyle:            PropTypes.object,
   style:                  PropTypes.object,
   onReady:                PropTypes.func,
   onError:                PropTypes.func,

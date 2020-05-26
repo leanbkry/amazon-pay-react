@@ -56,9 +56,9 @@ class WalletWidget extends PureComponent {
   }
 
   render() {
-    const {style} = this.props;
+    const {style,widgetClassName,widgetStyle} = this.props;
 
-    return <div id={AMAZON_WALLET_WIDGET_DIV_ID} style={WalletWidget.getStyle(style)}/>;
+    return <div className={widgetClassName} id={AMAZON_WALLET_WIDGET_DIV_ID} style={widgetStyle ? widgetStyle : WalletWidget.getStyle(style)}/>;
   }
 }
 
@@ -74,9 +74,11 @@ WalletWidget.getStyle = (style) => {
 WalletWidget.propTypes = {
   sellerId:        PropTypes.string.isRequired,
   language:        PropTypes.string,
+  widgetClassName: PropTypes.string,
   onPaymentSelect: PropTypes.func,
   onError:         PropTypes.func,
   style:           PropTypes.object,
+  widgetStyle:     PropTypes.object,
 };
 
 export default WalletWidget;
